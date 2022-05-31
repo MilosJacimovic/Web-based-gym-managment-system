@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
+</head>
+  <body>
+    <div class="container-fluid p-3  border bg-white ">
+      <div class=" text-center mt-1 ">
+          <h1>Check membership status </h1>
+      </div>
+      <br>
+      <div class=" text-center mt-5 ">
+        <h2>Scan QR</h2>
+    </div>
+    <br>
+    <div class="container"> 
+      <div class="row">
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-8">
+              <div id="reader" width="600px"></div>
+
+               <div id="emptyHtmlElement"></div>
+          </div>
+          <div class="col-md-2">
+
+          </div>
+      </div>
+      <div class="row" >
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-8">
+              <div>
+                
+              </div>
+          </div>
+          <div class="col-md-2">
+
+          </div>
+      </div>
+  </div>
+  <br>
+  <br>
+  <div class="row mx-auto text-center">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <input type="search" class="form-control rounded" [(ngModel)]="urlForCheck" placeholder="Search ex: 'Name' 'Surname'" aria-label="Search" aria-describedby="search-addon" />
+    </div>
+    <div class="col-md-4 text-left">
+        <button type="button" class="btn btn-outline-primary" (click)="checkMember()">Check</button>
+    </div>
+</div>
+  
+  <br>
+      <div class=" text-center mt-5 ">
+          <h2>Search member </h2>
+      </div>
+      <br>
+      <div class="row mx-auto text-center">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+              <input type="search" class="form-control rounded" [(ngModel)]="searchedMember" placeholder="Search ex: 'Name' 'Surname'" aria-label="Search" aria-describedby="search-addon" />
+          </div>
+          <div class="col-md-4 text-left">
+              <button type="button" class="btn btn-outline-primary" (click)="search()">Search</button>
+          </div>
+      </div>
+      <br>
+      <div class="row mx-auto text-center" *ngIf="errorSearch">
+          <div class="col-md-12 text-danger">
+              {{message}}
+          </div>
+      </div>
+      <div class="row mx-auto text-center" *ngIf="wantToSearch">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Firstname</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Mail</th>
+                  <th scope="col">Membership</th>
+                  <th scope="col">Check picture</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let smember of SearchedMembers">
+                <tr>
+                  <td>{{smember.name}}</td>
+                  <td>{{smember.surname}}</td>
+                  <td>{{smember.mail}}</td>
+                  <td *ngIf="smember.membership == 'expired' " style="color: red;"><strong>{{smember.membership}}</strong></td>
+                  <td *ngIf="smember.membership == 'valid' " style="color: green;"><strong>{{smember.membership}}</strong></td>
+                  <td *ngIf="smember.membership == 'notset' " style="color:purple;"><strong>{{smember.membership}}</strong></td>
+                  <td > 
+                    <a href="{{srcForImage}}{{smember.username}}/{{smember.image}}" target="_blank"> <img alt='img_path' class='img' width="50" height="50" src='{{srcForImage}}{{smember.username}}/{{smember.image}}' /> </a>
+                  </td>
+                  <td *ngIf="smember.membership != 'valid' "><button type="button" class="btn btn-success" (click)="renewMembership(smember.username)" >Renew membership</button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  
+  
+      <br>
+      <div class=" text-center mt-5 ">
+          <h2>All members </h2>
+      </div>
+      <br>
+      <div class="row mx-auto text-center">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Firstname</th>
+                  <th scope="col">Lastname</th>
+                  <th scope="col">Mail</th>
+                  <th scope="col">Membership</th>
+                  <th scope="col">Check picture</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let member of allMembers">
+                <tr>
+                  <td>{{member.name}}</td>
+                  <td>{{member.surname}}</td>
+                  <td>{{member.mail}}</td>
+                  <td *ngIf="member.membership != 'valid' " style="color: red;"><strong>{{member.membership}}</strong></td> 
+                  <td *ngIf="member.membership == 'valid' " style="color: green;"><strong>{{member.membership}}</strong></td>
+                  <td> 
+                    <a *ngIf="member.image != ''" href="{{srcForImage}}{{member.username}}/{{member.image}}" target="_blank"> <img alt='img_path' class='img' width="50" height="50" src='{{srcForImage}}{{member.username}}/{{member.image}}' /> </a>
+                    <img *ngIf="member.image == ''" alt='img_path' class='img' width="50" height="50" src='{{imageDataUrl}}' />
+                  </td>
+                  <td *ngIf="member.membership != 'valid' "><button type="button" class="btn btn-success" (click)="renewMembership(member.username)" >Renew membership</button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+     
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+  </div>
+  </body>
+
+
+</html>

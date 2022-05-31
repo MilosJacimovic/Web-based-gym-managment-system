@@ -1,0 +1,169 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>Welcome {{user.name}}</h3 >
+        </div>
+    </div>
+    <div class="row m-auto" *ngIf="!firstLogin">
+        <div class="col-md-12 text-center text-primary">
+            <img  src = "{{profilePic}}" width="300" height="300">
+        </div>
+    </div>
+    <br>
+    <div class="row m-auto" *ngIf="!firstLogin">
+        <div class="col-12 text-center text-primary">
+            <h3>Your information</h3    >
+        </div>
+    </div>
+    <br>
+    <div class="row" *ngIf="!firstLogin">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Username</th>
+                        <th *ngIf="user.type == 'trainer'">Trainings</th>
+                        <th *ngIf="user.type == 'user'">Membership</th>
+                        <th>Mail</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-form="form">
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.username}}</td>
+                        <td *ngIf="user.type == 'trainer'"> {{user.listoftrainings}}</td>
+                        <td *ngIf="user.type == 'user' && user.membership != 'valid' " style="color: red;">{{user.membership}}</td>
+                        <td *ngIf="user.type == 'user' && user.membership == 'valid' " style="color: green;">{{user.membership}}</td>
+                        <td><input type="text" #mail value="{{user.mail}}"></td>
+                        <td><input type="text" #city value="{{user.city}}"></td>
+                        <td ><input type="text" #phone value="{{user.phone}}"></td>
+                        <td><button type="button" class="btn btn-success" (click)="update()">Update</button></td>
+                        <td *ngIf="!infoChangeFlag && user.type == 'trainer'"><button type="button" class="btn btn-warning" (click)="infoChange()">Info change</button></td>
+                        <td *ngIf="user.type == 'trainer'"><button type="button" class="btn btn-info" (click)="addTrainings()">Add training</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mx-auto text-center" *ngIf="firstLogin">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <p class="h4 text-primary"> You have successfully registered on our website. Please visit our Gym to activate your membership. Before that you wont be able to change 
+                your information beyond your password and can only browse our website with limited experience. <br> <br>
+                For more information about membership plans please check out 'Membership' card in the menu or click <a href="/membership" style="color: darkolivegreen;"> here</a>.
+            </p>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <div class="row" *ngIf="infoChangeFlag">
+        <div class="col-md-2 ">
+            <h4>Change your description</h4>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="newDescription" placeholder="{{user.description}}"></textarea>
+              </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success" (click)="changeMyDesc()">Change info</button>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid p-3  border bg-white " *ngIf="wantToAddTraining && user.trrequest == ''">
+        <div class="row m-auto">
+            <div class="col-12 text-center text-info">
+                <h3>Add training</h3>
+            </div>
+            <div class="m-auto">
+                <form>
+                    <select name='pickTraining' [(ngModel)]='selectedTraining'>
+                        <option *ngFor='let training of AvailableTrainings'>
+                            {{training}}
+                        </option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button type="button" class="btn btn-info" (click)="AddTraining()">Rquest training</button>
+                </form>
+            </div>
+           
+        </div>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-success">
+                {{messageRequestTraining}}
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-3  border bg-white " *ngIf="wantToAddTraining && user.trrequest != ''">
+        <div class="col-12 text-center text-info">
+            <h3>Yor request to add {{user.trrequest}} training is pending.</h3>
+        </div>
+    </div>
+    <div class="row m-auto">
+        <div class="col-12 text-center text-success">
+            {{messageUpdateInfo}}
+        </div>
+    </div>
+    <div class="proba" *ngIf="firstLogin">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        <br>
+    </div>
+    <div class="row m-auto">
+        <div class="col-12 text-center text-primary">
+            <h3><button (click) = 'wantToChangePassword()' class="btn btn-primary mx-3">Change password</button></h3>
+        </div>
+        <div *ngIf="!changePasswordFlag">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="row text-center" *ngIf="changePasswordFlag">
+        <div class="col">
+            <form>
+                <p><input type="password" class="mx-3" name="old_password" [(ngModel)] ='old_password' placeholder="Old password"></p>
+                <p><input type="password" class="mx-3" name="new_password" [(ngModel)] ='new_password' placeholder="New password"></p>
+                <p><input type="password" class="mx-3" name = "confirm_password" [(ngModel)] ='confirm_password' placeholder="Confirm password"></p>
+                <p><button (click) = 'changePassword()' class="btn btn-danger mx-3">Change password</button></p>
+            </form>
+        </div>
+    </div>
+    <div class="row m-auto">
+        <div class="col-12 text-center text-success">
+            {{messageUpdatePassword}}
+        </div>
+    </div>
+    <div class="row m-auto">
+        <div class="col-12 text-center text-danger">
+            {{errorMessage}}
+        </div>
+    </div>
+    
+    <div class="proba" *ngIf="firstLogin">
+        <br>
+        <br>
+    </div>
+</div>
+

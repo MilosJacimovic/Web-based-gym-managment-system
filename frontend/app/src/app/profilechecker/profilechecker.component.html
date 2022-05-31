@@ -1,0 +1,57 @@
+<div class="container-fluid p-3  border bg-white ">
+        <div class="row">
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-3">
+                <img  src = "{{profilePic}}" width="300" height="300">
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row text-center">
+            <div class="col-md-3">
+                Name: 
+                <br>
+                <b>{{userForCheck.name}}</b>
+            </div>
+            <div class="col-md-3">
+                Surname:
+                <br>
+                <b>{{userForCheck.surname}}</b>
+            </div>
+            <div class="col-md-3">
+                Status:
+                <br>
+                <b *ngIf="userForCheck.status == 1" style="color: green"> Valid</b>
+                <b *ngIf="userForCheck.status == 0" style="color: red"> Expired</b>
+                
+            </div>
+            <div class="col-md-3">
+                Mail
+                <br>
+                <b>{{userForCheck.mail}}</b>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row m-auto">
+            <div class="col-md-12 text-center text-primary">
+                <button type="button" class="btn btn-info" (click)="goBack()">Go back</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+</div>

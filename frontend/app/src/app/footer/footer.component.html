@@ -1,0 +1,46 @@
+<!-- Footer -->
+<footer class="page-footer bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-2">
+    <!-- Section: Form -->
+    <section>
+      <form>
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-auto">
+            <p>
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-5 ">
+              <input class="col-12 form-control" [(ngModel)] ="myMail" type="text" name="mail" placeholder={{placeholder}}    />
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-auto" *ngIf="canSubscribe">
+            <!-- Submit button -->
+            <button  type="submit" class="btn btn-outline-light" (click)="newsletterSubsribe()">
+              Subscribe
+            </button>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </form>
+    </section>
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="/homepage">Gym.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->

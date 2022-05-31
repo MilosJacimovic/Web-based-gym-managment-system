@@ -1,0 +1,149 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="col-md-12 text-center text-primary">
+        <h3>Add training</h3 >
+    </div>
+    <br>
+    <form> 
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                Name:
+            </div>
+            <div class="col-5">
+                <input class="col-12" [(ngModel)] ='newName' name="name" type="text" placeholder="Name of training"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2 auto">
+                Description:
+            </div>
+            <div class="col-5">
+                <input class="col-12" [(ngModel)] ='newDescription' name="description" type="text" placeholder="Description of training"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                Duration: 
+            </div>
+            <div class="col-5">
+                <input class="col-12" [(ngModel)] ='newDuration' name="duration" type="number" placeholder="Duration of training"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                Intensity:
+            </div>
+            <div class="col-5">
+                <select name='pickTraining' [(ngModel)]='newIntensity'>
+                    <option >
+                        easy
+                    </option>
+                    <option >
+                        medium
+                    </option>
+                    <option >
+                        hard
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                Image
+            </div>
+            <div class="col-5">
+                <input type="file"  multiple (change) = "file_change($event)" class="fileInputProfile">
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-6 offset-3">
+                <button type="submit" (click) = "addTraining()" class="btn btn-success col-12">Add </button>
+            </div>
+        </div>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-danger">
+                {{message}}
+            </div>
+        </div>
+        <br>
+    </form>
+    <div class="col-md-12 text-center text-primary">
+        <h3>Edit/Remove trainings</h3 >
+    </div>
+    <br>
+    <div class="row" *ngFor="let training of allTrainings"> 
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-10">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-header ">
+                        <h5 class="card-title">
+                            <button *ngIf="!wantToUpdateFlag" type="button" class="btn btn-primary" (click)="wantToUpdate(training.name)">
+                                Update
+                              </button>
+                              <button *ngIf="!wantToUpdateFlag" type="button" class="btn btn-danger" (click)="deleteTraining(training.name)">
+                                Delete
+                              </button>
+                        </h5>
+                        <h5 class="card-title">{{training.name}}</h5>
+                    </div>
+                  <div class="card-body">
+                    <p class="card-text">{{training.description}}</p>
+                    <div *ngIf = "wantToUpdate && training.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3">
+                                <p>Change description:</p>
+                            </div>
+                            <div class="col-md-9 bg-primary">
+                                <input type="text" [(ngModel)]="newDescription">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text">Duration: {{training.duration}} hours</p>
+                    <div *ngIf = "wantToUpdate && training.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3 ">
+                                <p>Change duration:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" [(ngModel)]="newDuration">
+                            </div>
+                        </div>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted"> Intensity: {{training.intensity}}</small>
+                    <br>
+                    <div *ngIf = "wantToUpdate && training.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3">
+                                <p>Change intensity:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" [(ngModel)]="newIntensity">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button *ngIf="wantToUpdateFlag" type="button" class="btn btn-success" (click)="updateOne(training)">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</div>
+

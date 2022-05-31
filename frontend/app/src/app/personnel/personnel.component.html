@@ -1,0 +1,110 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-12 text-center text-primary">
+            <h3>Alter personnel type</h3>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Mail</th>
+                        <th>Type</th>
+                        <th>Phone</th>
+                        <th >Trainings</th>
+                        <th >Training request</th>
+                        <th *ngIf = "wantToUpdate" >New Type</th>
+                        <th></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personnel of personnels" ng-form="form">
+                        <td>{{personnel.name}}</td>
+                        <td>{{personnel.surname}}</td>
+                        <td>{{personnel.mail}}</td>
+                        <td *ngIf="personnel.type == 'trainer'" class="font-weight-bold text-warning">{{personnel.type}}</td>
+                        <td *ngIf="personnel.type == 'admin'" class="font-weight-bold text-success">{{personnel.type}}</td>
+                        <td>{{personnel.phone}}</td>
+                        <td *ngIf="personnel.type == 'trainer'">{{personnel.listoftrainings}}</td>
+                        <td *ngIf="personnel.type == 'admin'" >/</td>
+                        <td *ngIf="personnel.trrequest != '' && personnel.type == 'trainer' "> {{personnel.trrequest}}</td>
+                        <td *ngIf="personnel.trrequest == '' && personnel.type == 'trainer'"> No requests </td>
+                        <td *ngIf="personnel.type == 'admin'" >/</td>
+                        <td *ngIf="personnel.status =='1' && !wantToUpdate && !wantToUpdateGym"> <button class="btn btn-warning"(click)="update(personnel.username)" > Update</button></td>
+                        <td *ngIf="wantToUpdate && personnel.username == unameForUpdate"><form>
+                            <select name='pickTraining' [(ngModel)]='newType'>
+                                <option >
+                                    user
+                                </option>
+                                <option >
+                                    trainer
+                                </option>
+                                <option >
+                                    admin
+                                </option>
+                            </select>
+                            <br/>
+                        </form></td>
+                        <td *ngIf="wantToUpdate && unameForUpdate == personnel.username"><button type="button" class="btn btn-success" (click)="updateUser(personnel.username, personnel.type)">Update type</button></td>
+                        <td *ngIf="personnel.status =='1' && personnel.trrequest != ''"> <button class="btn btn-info" (click)="acceptTrainingRequest(personnel.username, personnel.trrequest)" > Accept request</button></td>
+                        <td *ngIf="personnel.status =='1' && !wantToUpdate && !wantToUpdateGym"><button type="button" class="btn btn-danger" (click)="delete(personnel.username)">Delete</button></td>
+                        
+                    </tr>
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="col-12 text-center text-primary">
+        <h3>Add personnel</h3>
+    </div>
+    <br>
+    
+    <form> 
+        <div class="row m-auto">
+            <div class="col-3 offset-1">
+                Upload JSON file:
+            </div>
+            <div class="col-5">
+                <input name="myFile" (change) = "file_change($event)" multiple type="file" accept=".json" class ="form-control"/>
+            </div>
+            <br>
+            <div class="row m-auto">
+                <div class="col-6 offset-3">
+                    <button (click) = 'uploadJson()'>Upload</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-success">
+                {{file_uploaded_message}}
+            </div>
+        </div>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-danger">
+                {{error_file_uploaded_message}}
+            </div>
+        </div>
+    </form>
+    
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

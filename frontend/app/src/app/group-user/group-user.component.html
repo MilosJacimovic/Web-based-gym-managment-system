@@ -1,0 +1,328 @@
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<div class="container-fluid expand-lg  bg-white ">
+    <div class=" text-center text-dark">
+        <div class="col">
+            <h4><b>Monday</b></h4>
+        </div>
+    </div>
+    <div class="table table-striped bg-dark p-1">
+        <div class="row">
+            <div class="col text-center" *ngFor="let times of distinctTimes">
+                <h5 class="text-white"><b>{{times}}</b></h5>
+                <div class="row justify-content-center " *ngFor="let training of allGroupTrainings">
+                    <div *ngIf="training.day == 'Monday' && training.time == times">
+                        <div *ngIf="CanCancel(training)" class="card bg-secondary border-success" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="CanTrain(training)" class="card bg-secondary border-primary" style="width: 10rem; height: 10rem; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="attended(training)" class="card bg-secondary" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  You attended this training.
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="missed(training)" class="card bg-secondary border-warning" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white  ">
+                                This training has ended.
+                            </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class=" text-center text-dark">
+        <div class="col">
+            <h4><b>Tuesday</b></h4>
+        </div>
+    </div>
+    <div class="table table-striped bg-dark p-1">
+        <div class="row">
+            <div class="col text-center" *ngFor="let times of distinctTimes">
+                <h5 class="text-white"><b>{{times}}</b></h5>
+                <div class="row justify-content-center " *ngFor="let training of allGroupTrainings">
+                    <div *ngIf="training.day == 'Tuesday' && training.time == times">
+                        <div *ngIf="CanCancel(training)" class="card bg-secondary border-success" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="CanTrain(training)" class="card bg-secondary border-primary" style="width: 10rem; height: 10rem; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="attended(training)" class="card bg-secondary" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  You attended this training.
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="missed(training)" class="card bg-secondary border-warning" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white  ">
+                                This training has ended.
+                            </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class=" text-center text-dark ">
+        <div class="col">
+            <h4><b>Wednesday</b></h4>
+        </div>
+    </div>
+    <div class="table table-striped bg-dark p-1">
+        <div class="row">
+            <div class="col text-center" *ngFor="let times of distinctTimes">
+                <h5 class="text-white"><b>{{times}}</b></h5>
+                <div class="row justify-content-center " *ngFor="let training of allGroupTrainings">
+                    <div *ngIf="training.day == 'Wednesday' && training.time == times">
+                        <div *ngIf="CanCancel(training)" class="card bg-secondary border-success" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="CanTrain(training)" class="card bg-secondary border-primary" style="width: 10rem; height: 10rem; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="attended(training)" class="card bg-secondary" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  You attended this training.
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="missed(training)" class="card bg-secondary border-warning" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white  ">
+                                This training has ended.
+                            </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class=" text-center text-dark">
+        <div class="col">
+            <h4><b>Thursday</b></h4>
+        </div>
+    </div>
+    <div class="table table-striped bg-dark p-1">
+        <div class="row">
+            <div class="col text-center" *ngFor="let times of distinctTimes">
+                <h5 class="text-white"><b>{{times}}</b></h5>
+                <div class="row justify-content-center " *ngFor="let training of allGroupTrainings">
+                    <div *ngIf="training.day == 'Thursday' && training.time == times">
+                        <div *ngIf="CanCancel(training)" class="card bg-secondary border-success" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="CanTrain(training)" class="card bg-secondary border-primary" style="width: 10rem; height: 10rem; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="attended(training)" class="card bg-secondary" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  You attended this training.
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="missed(training)" class="card bg-secondary border-warning" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white  ">
+                                This training has ended.
+                            </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class=" text-center text-dark p-1">
+        <div class="col">
+            <h4><b>Friday</b></h4>
+        </div>
+    </div>
+    <div class="table table-striped bg-dark">
+        <div class="row">
+            <div class="col text-center" *ngFor="let times of distinctTimes">
+                <h5 class="text-white"><b>{{times}}</b></h5>
+                <div class="row justify-content-center " *ngFor="let training of allGroupTrainings">
+                    <div *ngIf="training.day == 'Friday' && training.time == times">
+                        <div *ngIf="CanCancel(training)" class="card bg-secondary border-success" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="CanTrain(training)" class="card bg-secondary border-primary" style="width: 10rem; height: 10rem; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  Duration: {{training.duration}}h
+                              </p>
+                              <button *ngIf="CanTrain(training)" class="btn btn-primary " data-toggle="tooltip"(click)="attendTraining(training)">Train</button>
+                              <button *ngIf="CanCancel(training)" class="btn btn-primary" data-toggle="tooltip"(click)="cancelTraining(training)">Cancel</button>
+                            </div>
+                          </div>
+                          <div *ngIf="attended(training)" class="card bg-secondary" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white">
+                                  You attended this training.
+                              </p>
+                            </div>
+                          </div>
+                          <div *ngIf="missed(training)" class="card bg-secondary border-warning" style="width: 10rem; height: 10rem; border-width:3px !important; ">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">{{training.name}}</h5>
+                              <p class="card-text text-white  ">
+                                This training has ended.
+                            </p>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class=" text-dark">
+            <fieldset class="border p-3 ">
+                <legend  class="w-auto text-center"> <h4><b>Legend</b></h4></legend>
+                <div class="d-flex justify-content-center">
+                    <div class=" text-center text-dark">
+                        <div class="row">
+                            <h5><b>Colours</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-success">training border</div> - You signed to attend a training
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-primary">training border</div> - You can sign up to attend a training
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-warning">training border</div> - You attended this training
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-secondary">training border</div> - You havent attended this training
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <div class=" text-center text-dark">
+                        <div class="row">
+                            <h5><b>Sign up and cancelation policy</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class=" text-center text-dark">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-primary">Attend training</div> - You must sign up to attend a training at least an hour before it starts
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-success">Cancel training</div> - You must cancel training attendece at least an hour before it starts
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+             </fieldset>
+    </div>
+    <br>
+</div>

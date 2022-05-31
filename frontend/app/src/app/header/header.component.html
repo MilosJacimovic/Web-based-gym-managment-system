@@ -1,0 +1,82 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="navbar-brand" href="/homepage">Gym</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">   
+        <li class="nav-item dropdown" *ngIf="is_logged == 'logged'">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" *ngIf="user.status == '1'">
+            Training
+          </a>
+          <div class="dropdown-menu" >
+            <a class="dropdown-item"  href="/groupUser">Group training</a>
+            <a class="dropdown-item"  href="/individualRequest">Personal training</a>
+          </div>
+        </li>           
+          <li class="nav-item"  >
+              <a class="nav-link text-light" style="cursor:pointer" (click)="goMembership()" >Membership</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+              Services
+            </a>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" href="/gtrainings">Group trainings</a>
+              <a class="dropdown-item" href="/personaltraining" >Personal training</a>
+              <a class="dropdown-item" href="/gymfacilities">Gym facilities</a>
+            </div>
+          </li>  
+          <li class="nav-item">
+              <a class="nav-link text-light" style="cursor:pointer" (click)="goOurTeam()" >Our Team</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="is_logged == 'logged' && type === 'user'" style="cursor:pointer">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+              Profile
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/profile">My profile</a>
+              <a class="dropdown-item" href="/mycode" *ngIf="user.status == '1'">My Code</a>
+              <a class="dropdown-item" href="/individualTrainingUser" *ngIf="user.status == '1'">My individual Trainings</a>
+              <a class="dropdown-item" href="#" *ngIf="user.status == '1'">My group Trainings </a>
+            </div>
+          </li> 
+          <li class="nav-item" *ngIf="is_logged == 'logged' && type === 'trainer'">
+            <a class="nav-link text-light" style="cursor:pointer" href="/profile" >Profile</a>
+        </li>
+          <li class="nav-item">
+              <a class="nav-link text-light" style="cursor:pointer" (click)="goContact()"  >Contact</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="type == 'trainer'">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+              Trainer Panel
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/checkmemberships">Check membership</a>
+              <a class="dropdown-item" href="/groupTrainer">Group training</a>
+              <a class="dropdown-item" href="/individualTrainerPage"  *ngIf="showIndividual" >Invididual training</a>
+              <a class="dropdown-item" href="userrequest">User requests</a>
+            </div>
+          </li>  
+          <li class="nav-item dropdown" *ngIf="type == 'admin'">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+              Admin panel
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="userrequest">User requests</a>
+              <a class="dropdown-item" href="personnel">Personnel</a>
+              <a class="dropdown-item" href="editcost">Membership settings</a>
+              <a class="dropdown-item" href="addtraining">Add/Remove Trainings</a>
+              <a class="dropdown-item" href="/newsletter">Newsletter</a>
+            </div>
+          </li>  
+      </ul>
+      <button type="button" *ngIf="is_logged == 'logged'" class="btn btn-success" (click)="logout()">Log Out</button>
+      <button type="button"  *ngIf="is_logged != 'logged'" class="btn btn-success" (click)="login()" >Log In</button>
+      
+  </div>
+</nav>
+<br>

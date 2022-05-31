@@ -1,0 +1,119 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>My request</h3 >
+        </div>
+    </div>
+    <br>
+    <div class="row mx-auto text-center" *ngIf="!hasRequests" >
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Trainer</th>
+                <th scope="col">Number of trainings per week</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr>
+                <td>{{myRequest.trainerName}}</td>
+                <td>{{myRequest.numperweek}}</td>
+                <td>{{myRequest.description}}</td>
+                <td  style="color: red;">Awaiting conformation</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="row m-auto" *ngIf="hasRequests">
+      <div class="col-md-12 text-center text-black" >
+          <h4>You have no requests</h4 >
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>My trainings</h3 >
+        </div>
+    </div>
+    <br>
+    <div class="row mx-auto text-center"> 
+      <div class="col-md-4">
+          <h4>Denied</h4 >
+            <br>
+            <div class="row mx-auto text-center">
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th scope="col">Trainer</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let deniedTraining of deniedTrainings" >
+                  <tr>
+                    <td>{{deniedTraining.trainerName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    <div class="col-md-4">
+      <h4>In progress</h4 >
+        <br>
+        <div class="row mx-auto text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Trainer</th>
+                <th scope="col">Trainings left</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr>
+                <td>{{inProgressTrainings.trainerName}}</td>
+                <td>{{inProgressTrainings.numperweek}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <h4>Completed</h4 >
+        <br>
+        <div class="row mx-auto text-center">
+          <table class="table" >
+            <thead>
+              <tr>
+                <th scope="col">Trainer</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let completedTraining of completedTrainings">
+              <tr>
+                <td>{{completedTraining.trainerName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

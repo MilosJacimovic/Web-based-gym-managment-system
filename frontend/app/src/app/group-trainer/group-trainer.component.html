@@ -1,0 +1,100 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>Add training</h3 >
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+        <form *ngIf="!waitFlag">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="training">Training</label>
+                    <select id="training" class="form-control" [(ngModel)]='newTraining' name="training">
+                        <option value="" selected disabled>--Select training--</option>
+                        <option *ngFor='let training of myTrainings' >{{training}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="time">Starts at</label>
+                    <input type="number" class="form-control" id="start_time" placeholder="Starts at:" [(ngModel)]='newTime' name="time">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="time">Maximum participants</label>
+                    <input type="number" class="form-control" id="max_people" placeholder="Maximum participants" [(ngModel)]='newMaxPeople' name="people">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="time">Duration</label>
+                    <input type="number" class="form-control" id="duration" placeholder="Duration"  [(ngModel)]='newDuration' name="duration">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="dayofweek">Day of the week</label>
+                    <select id="dayofweek" class="form-control"  [(ngModel)]='newDayOfTheWeek' name="day">
+                        <option value="" selected disabled>--Select Day--</option>
+                        <option *ngFor="let day of avaliableDays">{{day}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="dayofweek">Add training</label>
+                    <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Add training" (click)="newGroupTraining()" >
+                  </div>
+            </div>
+        </form>
+        <div class="row m-auto">
+            <div class="col-12  text-center text-danger">
+                {{messageFail}}
+            </div>
+        </div>
+        <div class="row m-auto" *ngIf="waitFlag">
+            <div class="col-12  text-center text-success">
+                {{messageWait}}
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>My trainings for the week</h3 >
+        </div>
+    </div>
+    <br>
+    <div class="row mx-auto text-center" >
+        <table class="table" >
+          <thead >
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Name</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Starts</th>
+              <th scope="col">Number of people</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let training of trainingsOfTheWeek " >
+            <tr>
+              <td>{{training.day}}</td>
+              <td>{{training.name}}</td>
+              <td>{{training.duration}}</td>
+              <td>{{training.time}}</td>
+              <td>{{training.numofpeople}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+</div>

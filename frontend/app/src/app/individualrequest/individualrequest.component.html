@@ -1,0 +1,161 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class=" text-center mt-5 ">
+        <h1>Set an appointment</h1>
+    </div>
+    <br>
+    <h2 class="text-center" *ngIf="user.personalrequest == false && !finished &&makeNewRequest">Choose your trainer and training intensity</h2>
+    <div class="row "  *ngIf="user.personalrequest == false && !finished &&makeNewRequest">
+        <div class="col-md-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label >Firstname: </label> <br> <strong>{{user.name}}</strong> </div>
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_lastname">Lastname: </label><br> <strong>{{user.surname}} </strong></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_email">Number of trainings per week</label> 
+                                            <select [(ngModel)]="numOfTrainings"  id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need." >
+                                                <option value="" selected disabled>--Pick number--</option>
+                                                <option >1</option>
+                                                <option >2</option>
+                                                <option >3</option>
+                                                <option >4</option>
+                                                <option >5</option>
+                                            </select> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_need">Pick trainer</label> 
+                                            <select [(ngModel)]="trainer"  name="trainer" class="form-control" required="required"  >
+                                                <option value="" selected disabled>--Pick your trainer--</option>
+                                                <option *ngFor="let tr of personalTrainers" value="{{tr.username}}" >{{tr.name}}</option> 
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_message">Additional info</label> <textarea [(ngModel)]="info" id="form_message" name="message" class="form-control" placeholder="Write additional infrormation here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
+                                    </div>
+                                    <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " (click)="individualTrainingRequest()" value="Send request" > </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col-12 text-center text-danger">
+                                        {{errorMessage}}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+        
+    </div>
+    <div class="row m-auto" *ngIf="finished == true">
+        <div class="col-12 text-center text-success">
+            {{okMessage}}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row m-auto" *ngIf="!makeNewRequest">
+        <div class="col-12 text-center text-success">
+            {{alreadyOneTraining}}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row m-auto" *ngIf="user.personalrequest == true">
+        <br>
+        <div class="col-12 text-center text-success">
+            {{waitMessage}}
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+    </div>

@@ -1,0 +1,135 @@
+<br>
+<br>
+<div class="container">
+    <div *ngIf="regSuccessFlag">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row mx-auto text-center align-middle">
+            <div class="col-md-12">
+                <h3 style="color: dodgerblue;"><strong>You have successfully registered, please check your mail to verify your account!</strong></h3>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <br>
+    <form *ngIf="!regSuccessFlag"> 
+        <div class="row m-auto">
+            <div class="col-12 offset-3">
+                <h2>Sign up, become a part of the team!</h2>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Name *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='name' name="name" type="text" placeholder="Your name"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2 auto">
+                <label for="form_name">Surname *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='surname' name="surname" type="text" placeholder="Your surname"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Mail *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='mail' name="email" type="text" placeholder="Email"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Username *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='username' name="username" type="text" placeholder="Your username"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Password *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='password' name="password" type="password" placeholder="Your password" />
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Confirm password *</label> 
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='confpassword' name="password_confirmation" type="password" placeholder="Confirm password"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">City *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control form-control col-12" [(ngModel)] ='city' name="city" type="text" placeholder="Your City"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-3 offset-2">
+                <label for="form_name">Phone *</label>
+            </div>
+            <div class="col-5">
+                <input class="form-control col-12" [(ngModel)] ='phonenumber' name="phonenumber" type="text" placeholder="You phone number"/>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-success">
+                {{messageSuccess}}
+            </div>
+        </div>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-danger">
+                {{message}}
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row m-auto">
+            <div class="col-6 offset-3">
+                <button type="submit" (click) = "register()" class="btn btn-success col-12">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,25 @@
+<html lang="en">
+
+
+<body>
+    <div class="container">
+        <h1 class="text-center">QR CODE GENERATOR</h1>
+        <hr>
+
+        <h4>Input</h4>
+        <hr>
+        <p>Please type the URL or Text below and click Generate!</p>
+        <form class="form" action="/scan" method="POST">
+            <input name="url" class="form-control" placeholder="URL or Text" [(ngModel)]="url" type="text" required>
+            <br>
+            <button type="submit" class="btn btn-primary" value="Get QR" (click)="probaa()">Generate</button>
+        </form>    
+
+        
+        <img src="{{srcForImage}}" alt="QR Code Image">
+        <p>Scan the QR Code to access data!</p>
+        <a href="/"><button type="button" class="btn btn-primary">Back</button></a>
+        <br>    
+    </div>
+</body>
+</html>

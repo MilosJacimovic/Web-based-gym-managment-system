@@ -1,0 +1,50 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>Change avatar for user:</h3 >
+            <h3>{{username}}</h3 >
+        </div>
+    </div>
+    <div class="row m-auto">
+       <br>
+        <div class="col-md-12 text-center text-primary">
+            <img *ngIf="!whichPic" src = "{{srcForImage}}{{user.username}}/{{user.image}}" width="400" height="400">
+            <img *ngIf="whichPic" src = "{{profilePic}}" width="300" height="300">
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row m-auto text-center">
+        <div class="col-md-4">
+          </div>
+        <div class="col-md-4">
+          <h3> <button type="submit" (click) = "takePhoto()" class="btn btn-success col">Take photo</button></h3>
+        </div>
+        <div class="col-md-4">
+          </div>
+    </div>
+    <br>
+    <div class="row m-auto text-center">
+        <div class="col-md-12">
+            <h4>or</h4>
+        </div>
+    </div>
+    <br>
+ 
+    <div class="row m-auto text-center">
+        <div class="col">
+          <h3> Upload new profile picture:</h3>
+        </div>
+    </div>
+    <br>
+    <div class="row m-auto text-center">
+        <div class="col-md-12">
+            <input type="file"  multiple (change) = "file_change($event)" class="fileInputProfile">
+        </div>
+        <br>
+        <br>
+        <button type="submit" (click) = "addPhoto()" class="btn btn-success col-12">Add photo</button>
+    </div>
+    <br>
+    <br>
+</div>

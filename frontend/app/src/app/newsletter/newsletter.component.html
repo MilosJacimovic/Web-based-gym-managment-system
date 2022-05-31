@@ -1,0 +1,61 @@
+<div class="container-fluid p-4  border bg-white ">
+    <br>
+    <div class="row mx-auto text-center">
+        <div class="col-md-12 text-info">
+            <h3>Number of subscribers to newsletter: {{numOfSubs}}</h3>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-7 mx-auto">
+            <div class="card mt-2 mx-auto p-5 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_email">Email sender</label> <input [(ngModel)]="email" id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required."> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_need">Newsletter subject</label> 
+                                            <input type="text" [(ngModel)]="reason" name="reason" class="form-control"  required="required" data-error="Please specify your need.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_message">Message</label> <textarea [(ngModel)]="message" id="form_message" name="message" class="form-control" placeholder="Write your message here." rows="4" required="required" data-error="Please, leave us a message."></textarea> </div>
+                                    </div>
+                                    <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message" (click)="sendNewsLetter()"> </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col-12 text-center text-danger">
+                                        {{errorMessage}}
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col-12 text-center text-success">
+                                        {{okMessage}}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+        
+    </div>
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>

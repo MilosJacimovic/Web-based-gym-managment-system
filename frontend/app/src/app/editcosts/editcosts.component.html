@@ -1,0 +1,85 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-md-12 text-center text-primary">
+            <h3>Configure memberships</h3 >
+        </div>
+    </div>
+    <br>
+    <div class="row" *ngFor="let membership of memberships"> 
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-10">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-header ">
+                        <h5 class="card-title">
+                            <button *ngIf="!wantToUpdateFlag" type="button" class="btn btn-primary" (click)="wantToUpdate(membership.name)">
+                                Update
+                              </button>
+                        </h5>
+                        <h5 class="card-title">{{membership.name}}</h5>
+                    </div>
+                  <div class="card-body">
+                    <p class="card-text">{{membership.description}}</p>
+                    <div *ngIf = "wantToUpdate && membership.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3">
+                                <p>Change description:</p>
+                            </div>
+                            <div class="col-md-9 bg-primary">
+                                <input type="text" [(ngModel)]="newDescription">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text">Duration: {{membership.duration}} times/month</p>
+                    <div *ngIf = "wantToUpdate && membership.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3 ">
+                                <p>Change duration:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" [(ngModel)]="newDuration">
+                            </div>
+                        </div>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted"> Standard price: {{membership.price}}</small>
+                    <br>
+                    <small class="text-muted"> Student price: {{membership.discount}}</small>
+                    <br>
+                    <div *ngIf = "wantToUpdate && membership.name == nameForUpdate">
+                        <div class="row bg-primary">
+                            <div class="col-md-3">
+                                <p>Change standard price:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" [(ngModel)]="newStandardPrice">
+                            </div>
+                        </div>
+                        <div class="row bg-primary">
+                            <div class="col-md-3">
+                                <p>Change student price:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" [(ngModel)]="newStudentPrice">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button *ngIf="wantToUpdateFlag" type="button" class="btn btn-success" (click)="updateOne(membership)">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</div>
+

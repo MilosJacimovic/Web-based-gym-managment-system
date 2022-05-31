@@ -1,0 +1,32 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto text-center">
+        <div class="col-md-6">
+            <video id="webcam" autoplay playsinline width="640" height="480"></video>
+            
+        </div>
+        <div class="col-md-6">
+            <canvas id="canvas" class="d-none"></canvas>
+            <img src="{{picture}}"> 
+            
+        </div>
+    </div>
+    <div class="row m-auto text-center">
+        <div class="col-md-4">
+            <h3> <button type="submit" (click) = "takePicture()" class="btn btn-success col">Take picture</button></h3>
+        </div>
+        <div class="col-md-4">
+            <h3> <button type="submit" (click) = "stop()" class="btn btn-danger col">Stop camera</button></h3>
+        </div>
+        <div class="col-md-4">
+            <h3> <button type="submit" (click) = "start()" class="btn btn-warning col">Restart camera</button></h3>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3> <button type="submit" (click) = "goBack()" class="btn btn-primary col">Go back</button></h3>
+    <br>
+    <br>
+    <br>
+</div>

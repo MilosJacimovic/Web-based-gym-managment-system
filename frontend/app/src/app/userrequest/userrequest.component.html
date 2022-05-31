@@ -1,0 +1,144 @@
+<div class="container-fluid p-3  border bg-white ">
+    <div class="row m-auto">
+        <div class="col-12 text-center text-primary">
+            <h3>Expired memberships</h3>
+        </div>
+        <br>
+        <br>
+        <div class="row m-auto" *ngIf="noExpired">
+            <div class="col-12 text-center text-success">
+               <h5> {{noExpiredMessage}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-auto text-center" *ngIf="!noExpired">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Membership</th>
+                <th scope="col">Check picture</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let member of expired">
+              <tr>
+                <td>{{member.name}}</td>
+                <td>{{member.surname}}</td>
+                <td>{{member.mail}}</td>
+                <td style="color: red;">{{member.membership}}</td>
+                <td> 
+                    <a *ngIf="member.image != ''" href="{{srcForImage}}{{member.username}}/{{member.image}}" target="_blank"> <img alt='img_path' class='img' width="50" height="50" src='{{srcForImage}}{{member.username}}/{{member.image}}' /> </a>
+                    <img *ngIf="member.image == ''" alt='img_path' class='img' width="50" height="50" src='{{imageDataUrl}}' />
+                  </td>
+                  <td ><button type="button" class="btn btn-success" (click)="renewMembership(member.username)" >Renew membership</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+    <br>
+    <br>
+    <div class="row m-auto">
+        <div class="col-12 text-center text-primary">
+            <h3>Alter users</h3>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Membership</th>
+                        <th>Members</th>
+                        <th>Type</th>
+                        <th *ngIf = "wantToUpdate" >New Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users" ng-form="form">
+                        <td>{{user.name}}</td>
+                        <td>{{user.surname}}</td>
+                        <td>{{user.membership}}</td>
+                        <td>{{user.mail}}</td>
+                        <td>{{user.type}}</td>
+                        <td *ngIf="user.status =='0'"><button type="button" class="btn btn-primary" (click)="approve(user.username)">Accept</button></td>
+                        <td *ngIf="user.status =='0'"><button type="button" class="btn btn-danger" (click)="decline(user.username)">Decline</button></td>
+                        <td *ngIf="user.status =='1' && !wantToUpdate"><button type="button" class="btn btn-success" (click)="update(user.username)">Update</button></td>
+                        <td *ngIf="wantToUpdate && unameForUpdate == user.username"><form>
+                            <select name='pickTraining' [(ngModel)]='newType'>
+                                <option >
+                                    user
+                                </option>
+                                <option >
+                                    trainer
+                                </option>
+                                <option >
+                                    admin
+                                </option>
+                            </select>
+                            <br/>
+                        </form></td>
+                        <td *ngIf="user.status =='1' && !wantToUpdate"><button type="button" class="btn btn-warning" (click)="avatarUpload(user.username)">Avatar upload</button></td>
+                        <td *ngIf="wantToUpdate && unameForUpdate == user.username"><button type="button" class="btn btn-success" (click)="updateUser(user.username, user.type)">Update Type</button></td>
+                        <td *ngIf="user.status =='1' && !wantToUpdate"><button type="button" class="btn btn-danger" (click)="delete(user.username)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row m-auto">
+        <div class="col">
+            
+        </div>
+    </div>
+    <br>
+    <div class="col-12 text-center text-primary">
+        <h3>Add users</h3>
+    </div>
+    <br>
+    
+    <form> 
+        <div class="row m-auto">
+            <div class="col-3 offset-1">
+                Upload JSON file:
+            </div>
+            <div class="col-5">
+                <input name="myFile" (change) = "file_change($event)" multiple type="file" accept=".json" class ="form-control"/>
+            </div>
+            <br>
+            <div class="row m-auto">
+                <div class="col-6 offset-3">
+                    <button (click) = 'uploadJson()'>Upload</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-success">
+                {{file_uploaded_message}}
+            </div>
+        </div>
+        <div class="row m-auto">
+            <div class="col-12 text-center text-danger">
+                {{error_file_uploaded_message}}
+            </div>
+        </div>
+    </form>
+    
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
